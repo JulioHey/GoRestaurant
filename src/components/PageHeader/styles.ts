@@ -13,6 +13,11 @@ export const FullSection = styled(Section)`
     padding: 43px 10.5vw;
 
     width: 79vw;
+
+    @media(max-width: 600px) {
+        flex-direction: column;
+        padding: 20px 10.5vw;
+    }
 `
 
 export const LogoImg = styled.img`
@@ -40,7 +45,7 @@ export const ButtonSpan = styled.span`
     border-bottom-left-radius: 8px;
     background: #39B100;
     padding: 16px 24px;
-
+    width: 100%;
 
     font: 600 16px Poppins;
     line-height: 26px;
@@ -48,13 +53,20 @@ export const ButtonSpan = styled.span`
 `
 
 export const ButtonAddNewDish = styled.button`
-    background: none;
+    border-radius: 8px;
+    background: #41C900;
+    width: 230px;
+    padding: 0;
     border: none;
     outline: none;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media(max-width: 600px) {
+        margin-top: 20px;
+    }
 `
 
 export const ButtonAddNewDishImg = styled.img`
@@ -65,3 +77,4 @@ export const ButtonAddNewDishImg = styled.img`
     background: #41C900;
     padding: 16px 24px;
 `
+
