@@ -1,13 +1,13 @@
 import React from 'react';
 
-import BackgroundLayout from '../../components/BackgroundLayout';
+import PageHeader from '../../components/PageHeader';
 
 import { Section } from './styles';
 
 const Dashbord: React.FC = () => {
     return (
         <Section>
-            <BackgroundLayout />
+            <PageHeader />
         </Section>
     )
 }
