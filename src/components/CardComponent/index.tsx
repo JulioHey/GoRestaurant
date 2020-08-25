@@ -1,12 +1,68 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import Switch from 'react-switch';
 
-import { Section } from './styles';
+import { 
+    FullSection,
+    FirstSection,
+    DishImage,
+    SecondSection,
+    Title,
+    Description,
+    Price,
+    LastSection,
+    EditRemoveSection,
+    Button,
+    EditImage,
+    TrashImage,
+    AvailableSection,
+    AvailableSpan
+} from './styles';
 
-const CardComponent: React.FC = () => {
+import dish from '../../assets/imagens/molho.png';
+
+interface CardComponentProps {
+    isDisabled?: boolean;
+};
+
+const CardComponent: React.FC<CardComponentProps> = ({isDisabled}) => {
+
+    const handleAvailable = useCallback(() => {
+        console.log("Dale");        
+    }, []);
+
     return (
-        <Section>
-            
-        </Section>
+        <FullSection>
+            <FirstSection>
+                <DishImage src={dish} />
+            </FirstSection>
+            <SecondSection>
+                <Title>Ao Molho</Title>
+                <Description>Macarrão ao molho branco, fughi e cheiro verde das montanhas</Description>
+                <Price>R$ 19,90</Price>
+            </SecondSection>
+            <LastSection>   
+                <EditRemoveSection>
+                    <Button>
+                        <EditImage size="20" />
+                    </Button>
+                    <Button>
+                        <TrashImage size="20" />
+                    </Button>
+                </EditRemoveSection>
+                <AvailableSection>
+                    <AvailableSpan>Disponível</AvailableSpan>
+                    <Switch 
+                        checked={true} 
+                        onChange={handleAvailable} 
+                        onColor="#39B100" 
+                        offColor="#C72828" 
+                        uncheckedIcon={false}
+                        checkedIcon={false}
+                        disabled={isDisabled}
+                    />
+                </AvailableSection>
+            </LastSection>
+        </FullSection>
     )
 };
 

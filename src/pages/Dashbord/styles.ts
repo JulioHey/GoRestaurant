@@ -18,20 +18,26 @@ export const CardsSection = styled.div`
 
     margin-top: -120px;
 
-    @media(max-width: 1000px) {
-        padding: 0 8vw;
-        width: 86vw;
-        grid-template-columns: 1fr 1fr 1fr;
+    @media(max-width: 1200px) {
+        padding: 0 7.5vw;
+        width: 85vw;
     };
 
-    @media(max-width: 800px) {
+    @media(max-width: 1000px) {
         padding: 0 5vw;
         width: 90vw;
         grid-template-columns: 1fr 1fr;
     };
 
+    @media(max-width: 600px) {
+        padding: 0 2vw;
+        width: 96vw;
+        margin-top: -20px;
+    };
+
     @media(max-width: 500px) {
         grid-template-columns: 1fr;
-        margin-top: -20px;
+        padding: 0 5vw;
+        width: 90vw
     };
 `;
