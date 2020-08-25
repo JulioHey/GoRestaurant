@@ -10,7 +10,7 @@ export const FullSection = styled(Section)`
     flex-direction: row;
     justify-content: space-between;
     background: #C72828;
-    padding: 43px 10.5vw;
+    padding: 43px 10.5vw 183px;
 
     width: 79vw;
 

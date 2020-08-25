@@ -6,7 +6,11 @@ import plus from '../../assets/icons/plus.svg'
 import { FullSection, Section, LogoImg, LogoSpanDiv, LogoSpanSubtitle, LogoSpanTitle, ButtonSpan, ButtonAddNewDish, 
  ButtonAddNewDishImg } from './styles';
 
-const PageHeader: React.FC = () => {
+interface PageHeaderProps {
+    addNewDish?: any,
+}
+
+const PageHeader: React.FC<PageHeaderProps> = ({addNewDish}) => {
     return (
         <FullSection>
             <Section>
@@ -17,7 +21,7 @@ const PageHeader: React.FC = () => {
                 </LogoSpanDiv>
             </Section>
             <Section>
-                <ButtonAddNewDish>
+                <ButtonAddNewDish onClick={addNewDish}>
                     <ButtonSpan>Novo prato</ButtonSpan>
                     <ButtonAddNewDishImg src={plus} />
                 </ButtonAddNewDish>

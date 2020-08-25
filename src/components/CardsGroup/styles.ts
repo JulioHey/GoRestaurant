@@ -16,4 +16,7 @@ export const Section = styled.div`
         padding: 0 5vw;
         width: 90vw;
     }
+
+    position: relative;
+    bottom: 120px;
 `
