@@ -8,6 +8,6 @@ const CardComponent: React.FC = () => {
             
         </Section>
     )
-}
+};
 
 export default CardComponent;

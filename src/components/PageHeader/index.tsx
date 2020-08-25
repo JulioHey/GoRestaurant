@@ -1,14 +1,22 @@
 import React from 'react';
 
-import logo from '../../assets/icons/logo.svg'
-import plus from '../../assets/icons/plus.svg'
+import logo from '../../assets/icons/logo.svg';
 
-import { FullSection, Section, LogoImg, LogoSpanDiv, LogoSpanSubtitle, LogoSpanTitle, ButtonSpan, ButtonAddNewDish, 
- ButtonAddNewDishImg } from './styles';
+import { 
+    FullSection,
+    Section, 
+    LogoImg, 
+    LogoSpanDiv, 
+    LogoSpanSubtitle, 
+    LogoSpanTitle, 
+    ButtonSpan, 
+    ButtonAddNewDish, 
+    ButtonAddNewDishImg 
+} from './styles';
 
 interface PageHeaderProps {
     addNewDish?: any,
-}
+};
 
 const PageHeader: React.FC<PageHeaderProps> = ({addNewDish}) => {
     return (
@@ -23,11 +31,11 @@ const PageHeader: React.FC<PageHeaderProps> = ({addNewDish}) => {
             <Section>
                 <ButtonAddNewDish onClick={addNewDish}>
                     <ButtonSpan>Novo prato</ButtonSpan>
-                    <ButtonAddNewDishImg src={plus} />
+                    <ButtonAddNewDishImg size="50" color="#FFF"/>
                 </ButtonAddNewDish>
             </Section>
         </FullSection>
     )
-}
+};
 
 export default PageHeader;

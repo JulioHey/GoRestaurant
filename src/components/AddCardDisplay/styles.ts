@@ -5,9 +5,9 @@ export const Section = styled.div`
     align-items: center;
     justify-content: center;
 
-    position: absolute;
+    position: fixed;
     top: 0;
     background: rgba(0, 0, 0, 0.3);
     width: 100vw;
     height: 100vh;
-`
+`;

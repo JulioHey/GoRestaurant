@@ -5,7 +5,6 @@ export const Section = styled.div`
     align-items: center;
     justify-content: center;
 
-    float: left;
     background: #000;
     border-radius: 8px;
     height: 300px;
@@ -15,10 +14,14 @@ export const Section = styled.div`
 
     @media(max-width: 1000px) {
         width: 26vw;
-    }
+    };
 
     @media(max-width: 800px) {
         width: 41vw;
-    }
-`
+    };
+
+    @media(max-width: 500px) {
+        width: 85vw;
+    };
+`;
 

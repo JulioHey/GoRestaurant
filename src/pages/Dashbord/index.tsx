@@ -1,23 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
 import PageHeader from '../../components/PageHeader';
-import CardsGroup from '../../components/CardsGroup';
 import AddCardDisplay from '../../components/AddCardDisplay';
+import CardComponent from '../../components/CardComponent';
 
-import { Section } from './styles';
+import { 
+    Section,
+    CardsSection 
+} from './styles';
 
 const Dashbord: React.FC = () => {
-    const [ isAddCardOn, setAddCardOn ] = useState(false)
+    const [ isAddCardOn, setAddCardOn ] = useState(false);
+
+    const escFunction: any = useCallback((event: React.KeyboardEvent) => {
+        if(event.keyCode === 27) {
+          setAddCardOn(false);
+        }
+    }, []);
+    
+    useEffect(() => {
+        document.addEventListener("keydown", escFunction, false);
+
+        return () => {
+            document.removeEventListener("keydown", escFunction, false);
+        };
+    }, [escFunction]);
+
 
     return (
         <Section>
             { isAddCardOn ?
-            <AddCardDisplay /> :
+            <AddCardDisplay 
+            /> :
             ""}
             <PageHeader addNewDish={() => setAddCardOn(true)}/>
-            <CardsGroup />
+            <CardsSection>
+                <CardComponent />
+                <CardComponent />
+                <CardComponent />
+                <CardComponent />
+                <CardComponent />
+            </CardsSection>
         </Section>
     )
-}
+};
 
 export default Dashbord;

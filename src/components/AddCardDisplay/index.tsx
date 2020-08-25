@@ -8,6 +8,6 @@ const AddCardDisplay: React.FC = () => {
 
         </Section>
     )
-}
+};
 
 export default AddCardDisplay;
