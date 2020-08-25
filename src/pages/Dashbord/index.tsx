@@ -12,11 +12,6 @@ import {
 const Dashbord: React.FC = () => {
     const [ isAddCardOn, setAddCardOn ] = useState(false);
 
-    // função n ta funcionando como devia
-    // const getButtonAvailability = useCallback(() => {
-    //     return (!isAddCardOn);
-    // }, [isAddCardOn])
-
     const escFunction: any = useCallback((event: React.KeyboardEvent) => {
         if(event.keyCode === 27) {
           setAddCardOn(false);

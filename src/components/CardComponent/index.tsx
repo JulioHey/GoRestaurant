@@ -63,7 +63,7 @@ const CardComponent: React.FC<CardComponentProps> = ({isDisabled}) => {
                 </AvailableSection>
             </LastSection>
         </FullSection>
-    )
+    );
 };
 
 export default CardComponent;
