@@ -15,7 +15,6 @@ export const BackgroundSection = styled(Section)`
 `;
 
 export const AddDishSection = styled(Section)`
-    position: absolute;
     border-radius: 8px;
     padding:3.33vw 2.77vw;
     background: #EFEFF3;
