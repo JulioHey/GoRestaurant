@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import Switch from 'react-switch';
 
 import { 
     FullSection,
@@ -15,7 +14,8 @@ import {
     EditImage,
     TrashImage,
     AvailableSection,
-    AvailableSpan
+    AvailableSpan,
+    SwitchStyled
 } from './styles';
 
 import dish from '../../assets/imagens/molho.png';
@@ -51,15 +51,17 @@ const CardComponent: React.FC<CardComponentProps> = ({isDisabled}) => {
                 </EditRemoveSection>
                 <AvailableSection>
                     <AvailableSpan>Disponível</AvailableSpan>
-                    <Switch 
+                    { !isDisabled ? 
+                    <SwitchStyled 
                         checked={true} 
                         onChange={handleAvailable} 
                         onColor="#39B100" 
                         offColor="#C72828" 
                         uncheckedIcon={false}
                         checkedIcon={false}
-                        disabled={isDisabled}
-                    />
+                    /> :
+                    ""
+                    }
                 </AvailableSection>
             </LastSection>
         </FullSection>

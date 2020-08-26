@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { FiEdit3, FiTrash } from 'react-icons/fi';
+import Switch from 'react-switch';
 
 const Section = styled.div`
     display: flex;
@@ -165,4 +166,7 @@ export const AvailableSpan = styled.span`
     @media(max-width: 750px) {
         margin-bottom: 10px;
     };
+`;
+
+export const SwitchStyled = styled(Switch)`
 `;
