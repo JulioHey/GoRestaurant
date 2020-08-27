@@ -32,6 +32,13 @@ export const FullSection = styled(Section)`
     @media(max-width: 500px) {
         width: 85vw;
     };
+
+    @media(max-width: 360px) {
+        width: 80vw;
+    };
+
+    opacity: ${ props => props.className ? "0.5" : "initial"};
+    z-index: ${ props => props.className ? "0" : "1"};
 `;
 
 export const FirstSection = styled(Section)`
@@ -117,6 +124,7 @@ export const LastSection = styled(Section)`
     
     border-bottom-left-radius: 8px; 
     border-bottom-right-radius: 8px;
+
 `;
 
 export const EditRemoveSection = styled(Section)`
@@ -165,6 +173,10 @@ export const AvailableSpan = styled.span`
     margin-right: 10px;
     @media(max-width: 750px) {
         margin-bottom: 10px;
+    };
+
+    @media(max-width: 360px) {
+        display: none;
     };
 `;
 

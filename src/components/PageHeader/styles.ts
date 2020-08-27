@@ -5,6 +5,10 @@ export const Section = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media(max-width: 360px) {
+        flex-direction: column;
+    };
 `;
 
 export const FullSection = styled(Section)`
@@ -15,9 +19,16 @@ export const FullSection = styled(Section)`
 
     width: 79vw;
 
+    z-index: 0;
+
     @media(max-width: 600px) {
         flex-direction: column;
         padding: 20px 10.5vw;
+    };
+
+    @media(max-width: 360px) {
+        width: 100vw;
+        padding: 0;
     };
 `;
 
@@ -51,6 +62,10 @@ export const ButtonSpan = styled.span`
     font: 600 16px Poppins;
     line-height: 26px;
     color: #FFF;
+
+    @media(max-width: 360px) {
+        font-size: 14px;
+    };
 `;
 
 export const ButtonAddNewDish = styled.button`
@@ -61,12 +76,17 @@ export const ButtonAddNewDish = styled.button`
     border: none;
     outline: none;
 
+    z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
 
     @media(max-width: 600px) {
         margin-top: 20px;
+    };
+
+    @media(max-width: 360px) {
+        width: 200px;
     };
 `;
 

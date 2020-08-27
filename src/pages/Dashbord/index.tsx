@@ -9,14 +9,82 @@ import {
     CardsSection 
 } from './styles';
 
+interface DishComponentProps {
+    link: string | undefined;
+    name: string | undefined;
+    price: number | undefined;
+    description: string | undefined;
+};
+
 const Dashbord: React.FC = () => {
-    const [ isAddCardOn, setAddCardOn ] = useState(false);
+    const [ isAddCardOn, setAddCardOn ] = useState<boolean>();
+
+    const [ link, setLink ] = useState<string>();
+    const [ name, setName ] = useState<string>();   
+    const [ price, setPrice ] = useState<number | undefined>();
+    const [ description, setDescription ] = useState<string>();
+
+    const [ dishes, setDishes ] = useState<Array<DishComponentProps>>([
+        {
+            name: "Ao molho",
+            link: "http://192.168.15.15:3000/static/media/molho.c296da51.png",
+            price: 80.00,
+            description: "Macarrão ao molho branco, fughi e cheiro verde das montanhas",
+        },
+        {
+            name: "Ao molho 1",
+            link: "http://192.168.15.15:3000/static/media/molho.c296da51.png",
+            price: 80.00,
+            description: "Macarrão ao molho branco, fughi e cheiro verde das montanhas",
+        },
+        {
+            name: "Ao molho 2",
+            link: "http://192.168.15.15:3000/static/media/molho.c296da51.png",
+            price: 80.00,
+            description: "Macarrão ao molho branco, fughi e cheiro verde das montanhas",
+        },
+        {
+            name: "Ao molho 3",
+            link: "http://192.168.15.15:3000/static/media/molho.c296da51.png",
+            price: 80.00,
+            description: "Macarrão ao molho branco, fughi e cheiro verde das montanhas",
+        },
+    ]);
 
     const escFunction: any = useCallback((event: React.KeyboardEvent) => {
         if(event.keyCode === 27) {
           setAddCardOn(false);
         }
     }, []);
+
+    const handleAddNewDish = useCallback(() => {
+        if(name && link && price && description) {
+            const newDish: Array<DishComponentProps> = [{
+                name,
+                link,
+                price,
+                description
+            }]
+    
+            const updatedDishes = dishes.concat(newDish)
+    
+            setDishes(updatedDishes);
+        }
+        setAddCardOn(false);
+    }, [dishes, name, link, price, description]);
+
+    const handleEditDish = useCallback((position: number) => {
+
+    }, []);
+
+    const handleRemoveDish = useCallback((position: number) => {
+        let updatedDishes = dishes.slice(0, position);
+
+        const updatedDishes2 = dishes.slice((position  + 1) ,dishes.length);
+        
+        updatedDishes = updatedDishes.concat(updatedDishes2);
+        setDishes(updatedDishes);
+    }, [dishes]);
     
     useEffect(() => {
         document.addEventListener("keydown", escFunction, false);
@@ -26,20 +94,43 @@ const Dashbord: React.FC = () => {
         };
     }, [escFunction]);
 
-
     return (
         <Section>
             { isAddCardOn ?
-            <AddCardDisplay 
+            <AddCardDisplay
+                values={{                    
+                    link,
+                    name,
+                    price,
+                    description,
+                }}
+
+                onChangeFuncs={{
+                    link:(e: any) => setLink(e.target.value), 
+                    name:(e: any) => setName(e.target.value), 
+                    price:(e: any) => setPrice(e.target.value), 
+                    description:(e: any) => setDescription(e.target.value), 
+                }}
+
+                onAddFunc ={handleAddNewDish}
+                
             /> :
             ""}
             <PageHeader addNewDish={() => setAddCardOn(true)}/>
             <CardsSection>
-                <CardComponent isDisabled={ isAddCardOn ? true : false} />
-                <CardComponent isDisabled={ isAddCardOn ? true : false} />
-                <CardComponent isDisabled={ isAddCardOn ? true : false} />
-                <CardComponent isDisabled={ isAddCardOn ? true : false} />
-                <CardComponent isDisabled={ isAddCardOn ? true : false} />
+                { dishes.map((dish, index) => {
+                    return (
+                        <CardComponent 
+                            name={dish.name}
+                            price={dish.price}
+                            description={dish.description}
+                            link={dish.link}
+                            disabled={isAddCardOn}
+                            editFunc={() =>handleEditDish(index)}
+                            removeFunc={() => handleRemoveDish(index)}
+                        />
+                    )
+                }) }
             </CardsSection>
         </Section>
     )

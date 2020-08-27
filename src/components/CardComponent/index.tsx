@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { 
     FullSection,
@@ -18,43 +18,54 @@ import {
     SwitchStyled
 } from './styles';
 
-import dish from '../../assets/imagens/molho.png';
-
 interface CardComponentProps {
-    isDisabled?: boolean;
+    disabled: boolean | undefined;
+    link: string | undefined;
+    name: string | undefined;
+    price: number | undefined;
+    description: string | undefined;
+    editFunc: any;
+    removeFunc: any;
 };
 
-const CardComponent: React.FC<CardComponentProps> = ({isDisabled}) => {
+const CardComponent: React.FC<CardComponentProps> = ({disabled, link, name, price, description, editFunc, removeFunc}) => {
+    const [ available, setAvailable ] = useState(true);
+    const [ opacity, setOpacity ] = useState("");
 
-    const handleAvailable = useCallback(() => {
-        console.log("Dale");        
-    }, []);
+    const handleToggleAvailable = useCallback(() => {
+        if(available){
+            setOpacity("True");
+        } else {
+            setOpacity("");
+        }
+        setAvailable(!available);
+    }, [available]);
 
     return (
-        <FullSection>
+        <FullSection className={opacity}>
             <FirstSection>
-                <DishImage src={dish} />
+                <DishImage src={link} />
             </FirstSection>
             <SecondSection>
-                <Title>Ao Molho</Title>
-                <Description>Macarrão ao molho branco, fughi e cheiro verde das montanhas</Description>
-                <Price>R$ 19,90</Price>
+                <Title>{name}</Title>
+                <Description>{description}</Description>
+                <Price>R$ {price}</Price>
             </SecondSection>
             <LastSection>   
                 <EditRemoveSection>
-                    <Button>
+                    <Button onClick={editFunc} disabled={!available}>
                         <EditImage size="20" />
                     </Button>
-                    <Button>
+                    <Button onClick={removeFunc} disabled={!available}>
                         <TrashImage size="20" />
                     </Button>
                 </EditRemoveSection>
                 <AvailableSection>
                     <AvailableSpan>Disponível</AvailableSpan>
-                    { !isDisabled ? 
+                    { !disabled ? 
                     <SwitchStyled 
-                        checked={true} 
-                        onChange={handleAvailable} 
+                        checked={available} 
+                        onChange={handleToggleAvailable} 
                         onColor="#39B100" 
                         offColor="#C72828" 
                         uncheckedIcon={false}

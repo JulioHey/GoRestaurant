@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import NumberFormat from 'react-number-format';
 
 import Input from '../Input';
@@ -7,15 +7,29 @@ import {
     BackgroundSection,
     AddDishSection,
     Title,
-    SectionWithTwoInputs
+    SectionWithTwoInputs,
+    ButtonAddNewDish,
+    ButtonSpan,
+    ButtonAddNewDishImg
 } from './styles';
 
-const AddCardDisplay: React.FC = () => {
-    const [ link, setLink ] = useState('');
-    const [ name, setName ] = useState('');
-    const [ price, setPrice ] = useState<number>();
-    const [ description, setDescription ] = useState('');
+interface AddDishProps {
+    values: {
+        link: string | undefined;
+        name: string | undefined;
+        price: number | undefined;
+        description: string | undefined;
+    };
+    onChangeFuncs: {
+        link(e: React.ChangeEvent<HTMLInputElement>): void;
+        name(e: React.ChangeEvent<HTMLInputElement>): void;
+        price(e: React.ChangeEvent<HTMLInputElement>): void;
+        description(e: React.ChangeEvent<HTMLInputElement>): void;
+    };
+    onAddFunc(): void;
+};
 
+const AddCardDisplay: React.FC<AddDishProps> = ({values, onChangeFuncs, onAddFunc}) => {
     return (
         <BackgroundSection>
             <AddDishSection>
@@ -23,33 +37,37 @@ const AddCardDisplay: React.FC = () => {
                 <Input
                     width="92%"
                     span="URL da imagem" 
-                    value={link}
-                    onChange={(e: any) => setLink(e.target.value)}
+                    value={values.link}
+                    onChange={onChangeFuncs.link}
                     placeholder="Cole o link aqui"
                 />
                 <SectionWithTwoInputs>
                     <Input 
                         width="100%"
                         span="Nome do prato" 
-                        value={name}
-                        onChange={(e: any) => setName(e.target.value)}
+                        value={values.name}
+                        onChange={onChangeFuncs.name}
                         placeholder="Ex: Moda Italiana"
                     />
                     <NumberFormat
                         customInput={Input} 
                         width="55%"
                         span="Preço" 
-                        value={price}
+                        value={values.price}
                         isPrice="true"
-                        onChange={(e: any) => setPrice(e.target.value)}
+                        onChange={onChangeFuncs.price}
                     />
                 </SectionWithTwoInputs>
                 <Input 
-                        width="92%"
-                        span="Descrição do prato" 
-                        value={description}
-                        onChange={(e: any) => setDescription(e.target.value)}
-                    />
+                    width="92%"
+                    span="Descrição do prato" 
+                    value={values.description}
+                    onChange={onChangeFuncs.description}
+                />
+                <ButtonAddNewDish onClick={onAddFunc}>
+                    <ButtonSpan>Adicionar Prato</ButtonSpan>
+                    <ButtonAddNewDishImg size="50" color="#FFF"/>
+                </ButtonAddNewDish>
             </AddDishSection>
         </BackgroundSection>
     )

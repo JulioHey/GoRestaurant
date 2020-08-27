@@ -11,7 +11,11 @@ export const Section = styled.div`
     
     @media(max-width: 600px) {
         align-items: flex-start;
-    }; 
+    };
+    @media(max-width: 360px) {
+        width: 84%;
+        margin-left: 20px;
+    };  
 `;
 
 export const InputSection = styled.input`
@@ -39,7 +43,9 @@ export const InputSection = styled.input`
     @media(max-width: 600px) {
         width: 89%;
         margin-left: 0;
-    }; 
+    };
+
+ 
 `;
 
 export const LabelSpan = styled.span`
@@ -54,5 +60,5 @@ export const LabelSpan = styled.span`
 
     @media(max-width: 600px) {
         width: 89%;
-    };   
+    };    
 `;

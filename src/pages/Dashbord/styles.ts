@@ -36,8 +36,16 @@ export const CardsSection = styled.div`
     };
 
     @media(max-width: 500px) {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         padding: 0 5vw;
         width: 90vw
+    };
+
+    @media(max-width: 500px) {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        padding: 0;
     };
 `;
