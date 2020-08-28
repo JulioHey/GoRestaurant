@@ -4,6 +4,7 @@ import PageHeader from '../../components/PageHeader';
 import AddCardDisplay from '../../components/AddCardDisplay';
 import CardComponent from '../../components/CardComponent';
 
+
 import { 
     Section,
     CardsSection 
@@ -16,8 +17,14 @@ interface DishComponentProps {
     description: string | undefined;
 };
 
+interface ChangeCard {
+    on: boolean;
+    index: number
+};
+
 const Dashbord: React.FC = () => {
     const [ isAddCardOn, setAddCardOn ] = useState<boolean>();
+    const [ isChangeCardOn, setChangeCardOn ] = useState<number>();
 
     const [ link, setLink ] = useState<string>();
     const [ name, setName ] = useState<string>();   
@@ -27,25 +34,25 @@ const Dashbord: React.FC = () => {
     const [ dishes, setDishes ] = useState<Array<DishComponentProps>>([
         {
             name: "Ao molho",
-            link: "http://192.168.15.15:3000/static/media/molho.c296da51.png",
+            link: "http://localhost:3000/static/media/molho.c296da51.png",
             price: 80.00,
             description: "Macarrão ao molho branco, fughi e cheiro verde das montanhas",
         },
         {
             name: "Ao molho 1",
-            link: "http://192.168.15.15:3000/static/media/molho.c296da51.png",
+            link: "http://localhost:3000/static/media/molho.c296da51.png",
             price: 80.00,
             description: "Macarrão ao molho branco, fughi e cheiro verde das montanhas",
         },
         {
             name: "Ao molho 2",
-            link: "http://192.168.15.15:3000/static/media/molho.c296da51.png",
+            link: "http://localhost:3000/static/media/molho.c296da51.png",
             price: 80.00,
             description: "Macarrão ao molho branco, fughi e cheiro verde das montanhas",
         },
         {
             name: "Ao molho 3",
-            link: "http://192.168.15.15:3000/static/media/molho.c296da51.png",
+            link: "http://localhost:3000/static/media/molho.c296da51.png",
             price: 80.00,
             description: "Macarrão ao molho branco, fughi e cheiro verde das montanhas",
         },
@@ -73,9 +80,32 @@ const Dashbord: React.FC = () => {
         setAddCardOn(false);
     }, [dishes, name, link, price, description]);
 
-    const handleEditDish = useCallback((position: number) => {
+    const handleShowEditCard = useCallback((position: number) => {
+        setChangeCardOn(position);
+        setAddCardOn(true);
 
-    }, []);
+        setName(dishes[position].name);
+        setLink(dishes[position].link);
+        setPrice(dishes[position].price);
+        setDescription(dishes[position].description);
+    }, [dishes]);
+
+    const handleEditDish = useCallback((position: number) => {
+        const updatedDishes = dishes.map((item, index) => {
+            if (index === position ) {
+                return {
+                    name,
+                    link,
+                    price,
+                    description
+                }
+            }
+
+            return item;
+        });
+
+        setDishes(updatedDishes);
+    }, [dishes, name, link, price, description]);
 
     const handleRemoveDish = useCallback((position: number) => {
         let updatedDishes = dishes.slice(0, position);
@@ -111,9 +141,9 @@ const Dashbord: React.FC = () => {
                     price:(e: any) => setPrice(e.target.value), 
                     description:(e: any) => setDescription(e.target.value), 
                 }}
-
-                onAddFunc ={handleAddNewDish}
+                onAddFunc ={ isChangeCardOn ? () => handleEditDish(isChangeCardOn) : handleAddNewDish }
                 
+                title= { isChangeCardOn ? "Editar prato" : "Novo Prato"}
             /> :
             ""}
             <PageHeader addNewDish={() => setAddCardOn(true)}/>
@@ -126,7 +156,7 @@ const Dashbord: React.FC = () => {
                             description={dish.description}
                             link={dish.link}
                             disabled={isAddCardOn}
-                            editFunc={() =>handleEditDish(index)}
+                            editFunc={() =>handleShowEditCard(index)}
                             removeFunc={() => handleRemoveDish(index)}
                         />
                     )

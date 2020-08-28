@@ -27,13 +27,14 @@ interface AddDishProps {
         description(e: React.ChangeEvent<HTMLInputElement>): void;
     };
     onAddFunc(): void;
+    title?: string;
 };
 
-const AddCardDisplay: React.FC<AddDishProps> = ({values, onChangeFuncs, onAddFunc}) => {
+const AddCardDisplay: React.FC<AddDishProps> = ({values, onChangeFuncs, onAddFunc, title}) => {
     return (
         <BackgroundSection>
             <AddDishSection>
-                <Title>Novo Prato</Title>
+                <Title>{ title ? title : "Novo Prato"}</Title>
                 <Input
                     width="92%"
                     span="URL da imagem" 
