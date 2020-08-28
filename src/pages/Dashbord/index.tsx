@@ -64,6 +64,14 @@ const Dashbord: React.FC = () => {
         }
     }, []);
 
+    useEffect(() => {
+        document.addEventListener("keydown", escFunction, false);
+
+        return () => {
+            document.removeEventListener("keydown", escFunction, false);
+        };
+    }, [escFunction]);
+
     const handleAddNewDish = useCallback(() => {
         if(name && link && price && description) {
             const newDish: Array<DishComponentProps> = [{
@@ -115,14 +123,7 @@ const Dashbord: React.FC = () => {
         updatedDishes = updatedDishes.concat(updatedDishes2);
         setDishes(updatedDishes);
     }, [dishes]);
-    
-    useEffect(() => {
-        document.addEventListener("keydown", escFunction, false);
 
-        return () => {
-            document.removeEventListener("keydown", escFunction, false);
-        };
-    }, [escFunction]);
 
     return (
         <Section>
